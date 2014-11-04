@@ -26,7 +26,7 @@ This SmartApp was forked from the Smart Nightlight SmartApp and modified to work
 2. Install the newly created SmartApp in the SmartThings mobile application.
 3. Configure the inputs to the SmartApp as prompted.
 4. Tap done.
-5. Enjoy your new Smart Indicator Nightlight1. Create new SmartApps at https://graph.api.smartthings.com/ide/apps using the SmartApps at https://github.com/notoriousbdg/SmartThings.AverageThings.
+5. Enjoy your new Smart Indicator Nightlight
 
 ##Revision History
 
