@@ -79,7 +79,7 @@ def motionHandler(evt) {
 		if (enabled()) {
 			log.debug "turning on lights due to motion"
 			lights.indicatorWhenOff()
-			state.lastStatus = "never"
+			state.lastStatus = "on"
 		}
 		state.motionStopTime = null
 	}
@@ -96,32 +96,32 @@ def motionHandler(evt) {
 def illuminanceHandler(evt) {
 	log.debug "$evt.name: $evt.value, lastStatus: $state.lastStatus, motionStopTime: $state.motionStopTime"
 	def lastStatus = state.lastStatus
-	if (lastStatus != "never" && evt.integerValue > 50) {
-		lights.never()
-		state.lastStatus = "never"
+	if (lastStatus != "off" && evt.integerValue > 50) {
+		lights.indicatorNever()
+		state.lastStatus = "off"
 	}
 	else if (state.motionStopTime) {
-		if (lastStatus != "never") {
+		if (lastStatus != "off") {
 			def elapsed = now() - state.motionStopTime
 			if (elapsed >= (delayMinutes ?: 0) * 60000L) {
-				lights.never()
-				state.lastStatus = "never"
+				lights.indicatorNever()
+				state.lastStatus = "off"
 			}
 		}
 	}
-	else if (lastStatus != "indicatorWhenOff" && evt.value < 30){
+	else if (lastStatus != "on" && evt.value < 30){
 		lights.indicatorWhenOff()
-		state.lastStatus = "indicatorWhenOff"
+		state.lastStatus = "on"
 	}
 }
 
 def turnOffMotionAfterDelay() {
 	log.debug "In turnOffMotionAfterDelay"
-	if (state.motionStopTime && state.lastStatus != "never") {
+	if (state.motionStopTime && state.lastStatus != "off") {
 		def elapsed = now() - state.motionStopTime
 		if (elapsed >= (delayMinutes ?: 0) * 60000L) {
-			lights.never()
-			state.lastStatus = "never"
+			lights.indicatorNever()
+			state.lastStatus = "off"
 		}
 	}
 }
