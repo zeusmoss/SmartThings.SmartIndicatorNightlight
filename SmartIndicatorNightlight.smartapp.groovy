@@ -31,6 +31,7 @@
  *  Revision History
  *  ----------------
  *  2014-11-04  v0.0.1  Initial release
+ *  2014-11-05  v0.0.2  Support for multiple motion sensors
  *
  *  The latest version of this file can be found at:
  *    https://github.com/notoriousbdg/SmartThings.SmartIndicatorNightlight
